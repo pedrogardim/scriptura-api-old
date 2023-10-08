@@ -32,6 +32,9 @@ func Initialize() {
 	if err != nil {
 		log.Fatal("Database ping error")
 	}
+
+	fmt.Println("Connected to MongoDB!")
+
 	Db = Client.Database("scriptura-api")
 	Coll = Db.Collection("test")
 }
@@ -42,17 +45,14 @@ type Test struct {
 	NumOfSomething int
 }
 
-func TestQuery() {
+func TestQuery() Test {
 	filter := bson.D{{}}
 
 	var Test Test
 	err := Coll.FindOne(Ctx, filter).Decode(&Test)
 	if err != nil {
-		if err == mongo.ErrNoDocuments {
-			// This error means your query did not match any documents.
-			return
-		}
 		panic(err)
 	}
-	fmt.Println(Test)
+
+	return Test
 }
