@@ -36,3 +36,23 @@ func Initialize() {
 	Coll = Db.Collection("test")
 }
 
+type Test struct {
+	ID             primitive.ObjectID `bson:"_id"`
+	Name           string
+	NumOfSomething int
+}
+
+func TestQuery() {
+	filter := bson.D{{}}
+
+	var Test Test
+	err := Coll.FindOne(Ctx, filter).Decode(&Test)
+	if err != nil {
+		if err == mongo.ErrNoDocuments {
+			// This error means your query did not match any documents.
+			return
+		}
+		panic(err)
+	}
+	fmt.Println(Test)
+}
