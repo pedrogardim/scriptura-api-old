@@ -112,6 +112,7 @@ func ImportVerses() {
 		places := make([]primitive.ObjectID, 0)
 		peopleGroups := make([]primitive.ObjectID, 0)
 		eventsDescribed := make([]primitive.ObjectID, 0)
+		timeline := make([]primitive.ObjectID, 0)
 
 		for _, person := range importedJson[i].Fields.People {
 			person, _ := primitive.ObjectIDFromHex(parsedIdMap[person])
@@ -128,6 +129,10 @@ func ImportVerses() {
 		for _, eventDescribed := range importedJson[i].Fields.EventsDescribed {
 			eventDescribed, _ := primitive.ObjectIDFromHex(parsedIdMap[eventDescribed])
 			eventsDescribed = append(eventsDescribed, eventDescribed)
+		}
+		for _, timelineItem := range importedJson[i].Fields.EventsDescribed {
+			timelineItem, _ := primitive.ObjectIDFromHex(parsedIdMap[timelineItem])
+			timeline = append(timeline, timelineItem)
 		}
 
 		verse := models.Verse{
@@ -156,6 +161,10 @@ func ImportVerses() {
 
 		if len(eventsDescribed) > 0 {
 			verse.EventsDescribed = eventsDescribed
+		}
+
+		if len(timeline) > 0 {
+			verse.Timeline = timeline
 		}
 
 		parsed = append(parsed, verse)

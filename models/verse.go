@@ -18,4 +18,5 @@ type Verse struct {
 	Places          []primitive.ObjectID `bson:"places,omitempty" json:"places,omitempty"`
 	PeopleGroups    []primitive.ObjectID `bson:"peopleGroups,omitempty" json:"peopleGroups,omitempty"`
 	EventsDescribed []primitive.ObjectID `bson:"eventsDescribed,omitempty" json:"eventsDescribed,omitempty"`
+	Timeline        []primitive.ObjectID `bson:"timeline,omitempty" json:"timeline,omitempty"`
 }
