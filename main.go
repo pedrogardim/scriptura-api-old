@@ -1,19 +1,15 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 
 	"github.com/joho/godotenv"
+
+	routes "github.com/pedrogardim/scriptura-api/api/rest"
 	db "github.com/pedrogardim/scriptura-api/database"
 )
-
-func hello(w http.ResponseWriter, req *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(db.TestQuery())
-}
 
 func init() {
 	err := godotenv.Load()
@@ -26,9 +22,8 @@ func init() {
 func main() {
 	defer db.Client.Disconnect(db.Ctx)
 
-	http.HandleFunc("/hello", hello)
+	routes.Init()
 
 	fmt.Println("Listening on port 8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
-
 }
