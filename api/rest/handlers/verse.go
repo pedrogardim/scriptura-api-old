@@ -12,6 +12,14 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
+// @Summary Get a verse by standard reference
+// @Description Get a verse by standard reference
+// @ID get-verse
+// @Accept  json
+// @Produce  json
+// @Param   stdRef     path    string     true        "Standard reference"
+// @Success 200 {string} string  "ok"
+// @Router /api/verse/{stdRef} [get]
 func GetVerse(c *gin.Context) {
 	queryString := c.Param("std_ref")
 	prcdRef, err := utils.ProcessVerseQuery(queryString)
