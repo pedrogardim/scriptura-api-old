@@ -1,12 +1,11 @@
 package routes
 
 import (
-	"net/http"
-
+	"github.com/gin-gonic/gin"
 	"github.com/pedrogardim/scriptura-api/api/rest/handlers"
 )
 
-func Init() {
-	http.HandleFunc("/api/verse/", handlers.GetVerse)
+func Init(router *gin.Engine) {
+	router.GET("/api/verse/:query_string", handlers.GetVerse)
 
 }

@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 	"log"
-	"net/http"
 
 	"github.com/joho/godotenv"
 
+	"github.com/gin-gonic/gin"
 	routes "github.com/pedrogardim/scriptura-api/api/rest"
 	db "github.com/pedrogardim/scriptura-api/database"
 )
@@ -21,9 +21,8 @@ func init() {
 
 func main() {
 	defer db.Client.Disconnect(db.Ctx)
-
-	routes.Init()
-
+	r := gin.Default()
+	routes.Init(r)
 	fmt.Println("Listening on port 8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	r.Run()
 }
