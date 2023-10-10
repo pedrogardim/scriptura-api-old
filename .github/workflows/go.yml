@@ -21,7 +21,17 @@ jobs:
           go-version: "1.21.1"
 
       - name: Build
-        run: go build -v ./...
+        run: go build -v -o bin ./...
 
       - name: Test
-        run: go test -v ./...
+        run: go test -v -o bin ./...
+
+      - name: Release
+        uses: gh-actions/gh-release@v1
+        with:
+          name: Release v${{ github.ref }}
+          tag_name: ${{ github.ref }}
+          draft: false
+          prerelease: false
+          files: ./bin
+          token: ${{ secrets.GITHUB_TOKEN }}
