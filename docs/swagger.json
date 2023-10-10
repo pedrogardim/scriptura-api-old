@@ -1,0 +1,38 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/api/verse/{stdRef}": {
+            "get": {
+                "description": "Get a verse by standard reference",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get a verse by standard reference",
+                "operationId": "get-verse",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Standard reference",
+                        "name": "stdRef",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

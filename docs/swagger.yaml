@@ -1,0 +1,24 @@
+info:
+  contact: {}
+paths:
+  /api/verse/{stdRef}:
+    get:
+      consumes:
+      - application/json
+      description: Get a verse by standard reference
+      operationId: get-verse
+      parameters:
+      - description: Standard reference
+        in: path
+        name: stdRef
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+      summary: Get a verse by standard reference
+swagger: "2.0"
