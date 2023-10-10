@@ -6,6 +6,6 @@ import (
 )
 
 func Init(router *gin.Engine) {
-	router.GET("/api/verse/:query_string", handlers.GetVerse)
+	router.GET("/api/verse/:std_ref", handlers.GetVerse)
 
 }

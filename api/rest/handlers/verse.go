@@ -13,7 +13,7 @@ import (
 )
 
 func GetVerse(c *gin.Context) {
-	queryString := c.Param("query_string")
+	queryString := c.Param("std_ref")
 	prcdRef, err := utils.ProcessVerseQuery(queryString)
 	if err != nil {
 		c.Error(errors.New("error processing verse query"))
